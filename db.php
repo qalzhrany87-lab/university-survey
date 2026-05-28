@@ -3,7 +3,7 @@
 $conn = new mysqli(
 "sql8.freesqldatabase.com",
 "sql8828600",
-"PASSWORD_HERE",
+"yJdBJBmKHg",
 "sql8828600"
 );
 
